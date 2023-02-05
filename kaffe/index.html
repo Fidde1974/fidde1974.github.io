@@ -1,0 +1,60 @@
+<HTML>
+
+<script>
+
+var sortArray = new Array();
+var infoMap = new Map();
+async function getSorter() {
+response =  await fetch("sorter/sorter.json");
+return  response.json();
+}
+
+async function getInfoFile(sort) {
+response =  await fetch("sorter/"+sort+"/info.json");
+return  response.json();
+}
+
+async function getShortcutFile(sort) {
+response =  await fetch("sorter/"+sort+"/url.url");
+return  response.text();
+}
+
+function getShortcut(sort){
+	return getShortcutFile(sort).then(y => {
+		var arrLines = y.split("URL=");
+		return arrLines[1].split("\n")[0];
+		});
+}
+
+async function populateInfo(sort){
+	getInfoFile(sort).then(x => infoMap.set(sort, x))
+}
+
+function printTiles(){
+	
+	sortArray.forEach(val => {
+		console.log(val);
+		console.log(infoMap.get(val));
+		document.body.innerHTML += val +"<br>";
+		//getShortcut(val).then(x => console.log(x))
+	});
+
+	
+}
+async function getInfo(){
+	await sortArray.forEach(val => {
+		populateInfo(val);
+	});
+}
+getSorter()
+	.then(sorter => {
+			sorter.forEach(function(str){
+				sortArray.push(str);
+			});
+		}
+	).then(()=> getInfo()).then(() => printTiles());
+</script>
+<body>
+test
+</body>
+<//HTML>
