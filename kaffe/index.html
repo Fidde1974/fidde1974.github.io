@@ -37,19 +37,74 @@ async function printTiles(){
 	infoMap.forEach((value, key) => {
 		console.log(key);
 		console.log(value);
-		document.body.innerHTML +="<img src=\"sorter/"+key+"/bild.jpg\">"+ key +value.namn+ "<a href=\""+value.url+"\" target=\"_new\">Link</a> <br>";
+		//document.body.innerHTML +="<img src=\"sorter/"+key+"/bild.jpg\">"+ key +value.namn+ "<a href=\""+value.url+"\" target=\"_new\">Link</a> <br>";
 		//getShortcut(val).then(x => console.log(x))
+		document.getElementById('panel').appendChild(createTile(key,  value));
 	});
 	});
 
 	
 }
 
+function createTile(key, value){
+	var iDiv = document.createElement('div');
+	iDiv.className = 'block';
+	var img = document.createElement('img');
+    img.src = 'sorter/'+key+'/bild.jpg';
+	img.className = 'thumb';
+	
+	iDiv.appendChild(img);
+	var innerDiv = document.createElement('div');
+	innerDiv.className = 'block2';
+	innerDiv.innerHTML  = value.namn;
+	iDiv.appendChild(innerDiv);
+
+	
+	return iDiv;
+}
 
 printTiles();
 
 </script>
+
+<style>
+body {
+	background-color:#664240;
+}
+div.top {
+	background-color:#664240;
+	width:100%;
+}
+div.panel {
+	background-color:#664240;
+	width:100%;
+}
+div.block{
+	border-style: solid;
+	border-color: black;
+	margin-bottom:4px;
+	padding:2px;
+}
+div.block2{
+	float: right;
+	width:74%;
+	border-style: solid;
+	border-color: red;
+}
+h1{
+	font:normal 6vw arial
+}
+
+img.thumb{
+	width:25%
+}
+</style>
 <body>
-test
+<div class="top">
+<h1>Kaffe vi testat<h1>
+</div>
+<div id="panel" class="panel">
+
+</div>
 </body>
 <//HTML>
