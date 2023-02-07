@@ -2,21 +2,24 @@
 
 <script>
 
-var sortArray = new Array();
 var infoMap = new Map();
 async function getSorter() {
 response =  await fetch("sorter/sorter.json");
-return  response.json();
+sorter = await response.json();
+
+for(let part of sorter) {
+	response =  await fetch("sorter/"+part+"/info.json");
+	info = await response.json()
+	info.url = await getShortcut(part);
+	infoMap.set(part, info);
 }
 
-async function getInfoFile(sort) {
-response =  await fetch("sorter/"+sort+"/info.json");
-return  response.json();
 }
+
 
 async function getShortcutFile(sort) {
 response =  await fetch("sorter/"+sort+"/url.url");
-return  response.text();
+return  await response.text();
 }
 
 function getShortcut(sort){
@@ -26,33 +29,25 @@ function getShortcut(sort){
 		});
 }
 
-async function populateInfo(sort){
-	getInfoFile(sort).then(x => infoMap.set(sort, x))
-}
 
-function printTiles(){
+async function printTiles(){
+	getSorter().then(() => {
+	console.log(infoMap.keys());
 	
-	sortArray.forEach(val => {
-		console.log(val);
-		console.log(infoMap.get(val));
-		document.body.innerHTML += val +"<br>";
+	infoMap.forEach((value, key) => {
+		console.log(key);
+		console.log(value);
+		document.body.innerHTML +="<img src=\"sorter/"+key+"/bild.jpg\">"+ key +value.namn+ "<a href=\""+value.url+"\" target=\"_new\">Link</a> <br>";
 		//getShortcut(val).then(x => console.log(x))
 	});
+	});
 
 	
 }
-async function getInfo(){
-	await sortArray.forEach(val => {
-		populateInfo(val);
-	});
-}
-getSorter()
-	.then(sorter => {
-			sorter.forEach(function(str){
-				sortArray.push(str);
-			});
-		}
-	).then(()=> getInfo()).then(() => printTiles());
+
+
+printTiles();
+
 </script>
 <body>
 test
