@@ -8,6 +8,7 @@
 		"Mellanrostade bönor"
 	],
 	"Karaktäristik": "1000 gram, Arabica/Robusta",
-	"Styrka": "Medel (6/10)",
+	"Styrka": "Medel",
+	"StyrkaDetalj": "6/10",
 	"betyg": 6
 }

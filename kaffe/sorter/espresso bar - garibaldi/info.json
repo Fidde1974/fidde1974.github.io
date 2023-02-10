@@ -7,6 +7,7 @@
 		"Kakor"
 	],
 	"Karaktäristik": "1000 gram, Robusta",
-	"Styrka": "Kraftig (8/10)",
-	"betyg": 0
+	"Styrka": "Kraftig",
+	"StyrkaDetalj": "8/10",
+	"betyg": 5
 }
