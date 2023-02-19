@@ -84,6 +84,9 @@ function createSubContent(parent, titel, value){
 	parent.append(p);
 }
 
+fetch('sorter.json')
+  .then((response) => response.json())
+  .then((data) => console.log(data));
 printTiles();
 
 </script>

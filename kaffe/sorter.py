@@ -11,7 +11,8 @@ def get_json_object(folder):
     f = open(folder+'/info.json')
     obj = json.load(f)
     f.close()
-    obj["bild"] = f'{folder}/bild.jpg'
+    path = folder[folder.find("kaffe"):].replace("\\", "/")
+    obj["bild"] = f'{path}bild.jpg'
 
     with open(folder+'/url.url', encoding='utf-8') as f2:
         lines = f2.readlines()
@@ -22,7 +23,7 @@ def get_json_object(folder):
 
 
 def start():
-    print(f"{pathlib.Path().resolve()}sorter/*/")
+    print(f"sorter/*/")
     folders = glob(f"{pathlib.Path().resolve()}/sorter/*/", recursive=True)
     list = []
 
