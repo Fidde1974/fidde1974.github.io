@@ -8,13 +8,13 @@ from glob import glob
 
 def get_json_object(folder):
 
-    f = open(folder+'/info.json')
+    f = open(folder+'/info.json', encoding='utf-8')
     obj = json.load(f)
     f.close()
-    path = folder[folder.find("kaffe"):].replace("\\", "/")
+    path = folder[folder.find("kaffe")+6:].replace("\\", "/")
     obj["bild"] = f'{path}bild.jpg'
 
-    with open(folder+'/url.url', encoding='utf-8') as f2:
+    with open(folder+'/url.url') as f2:
         lines = f2.readlines()
         for line in lines:
             if line.startswith('URL='):
