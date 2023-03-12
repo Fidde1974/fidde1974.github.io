@@ -30,7 +30,10 @@ def start():
     for folder in folders:
         list.append(get_json_object(folder))
 
-    with open(f'{pathlib.Path().resolve()}\\sorter.json', 'w', encoding='utf-8') as wd:
+    print(f"Json: {list}")
+
+    print(f'Path to json: {pathlib.Path().resolve()}/sorter.json')
+    with open(f'{pathlib.Path().resolve()}/sorter.json', 'w', encoding='utf-8') as wd:
         json.dump(list, wd, ensure_ascii=False)
 
 
