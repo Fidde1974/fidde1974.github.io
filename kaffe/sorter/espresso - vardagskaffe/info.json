@@ -1,0 +1,19 @@
+{
+	"namn": "Espresso",
+	"tillverkare": "Vardagskaffe",
+	"Smak": [
+		"Mörk choklad", 
+		"Nötter", 
+		"Blommor", 
+		"Mellanrostade bönor",
+		"Sura Robusta",
+		"Aromatisk arabica",
+		"Mild syrlighet",
+		"Mörkrostade bönor"
+	],
+	"Karaktäristik": "1000 gram, Arabica/Robusta",
+	"Styrka": "Kkraftig",
+	"StyrkaDetalj": "8/10",
+	"betyg": 0,
+	"omdöme": ""
+}
